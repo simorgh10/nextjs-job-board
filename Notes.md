@@ -70,5 +70,14 @@ make sure eslint and prettier don't interfere
 # Shadcn UI Setup
 * most popular component library for nextjs right now (based on radix-ui that provides base components)
 * If not already installed
-> npx shadcn-ui@latest-init
-* 
+> npx shadcn-ui@latest init
+* from https://ui.shadcn.com/docs/components-json. The components.json file holds configuration for your project. We use it to understand how your project is set up and how to generate components customized for your project.
+* installed some packages, tailwind.config.js updated for us, updated global.css
+* added utils.ts function responsible for combining tailwid classes functions
+* copy button component (already contained in starting code) inside src/components/ui/button.tsx
+> npx shadcn-ui@latest add button
+
+> npx shadcn-ui@latest add input
+* react hook form allows us to use Shadcn components with react hook form which is a validation library
+> npx shadcn-ui@latest add form
+
