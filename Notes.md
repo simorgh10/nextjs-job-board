@@ -85,5 +85,26 @@ make sure eslint and prettier don't interfere
 > npx prisma init
 * creates schema.prisma file + .env file
 * add .env to .gitignore
-* vercel > storage. create postgres database name nextjs-job-board. Import content from .env.local into ;env file
-* 
+* vercel > storage. create postgres database name nextjs-job-board. Import content from .env.local into .env file, and also prisma tabe content into datasource db section
+* create Job model
+* In prisma generator client enable fullTextSearch preview Feature because we want to use postgres text search feature to be able to search for jobs
+* Create table inour database:
+> npx prisma db push
+* Then generate Prisma client from newer table
+> npx prisma generate
+* create a file src/lib/prisma.ts which will contain prisma client. For nextjs we have to setup prisma client in a specific way otherwise we get an error message because it creates a new client every time we restart our app and development
+```
+warn(prisma-client) There are already 10 instances of Prisma Client actively running.
+```
+* copy paste into prisma.ts from https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis
+* fill the datatabse wityh some dummy data
+* to save time copy scripts folder from link in description. Already dfone in the starting code.(one file for job placeholders and the other one to populate database)
+* then go into package.json and add this seed script (already done in the starting code)
+> npm run seed
+* use prisma studio
+> npx prisma studio
+* then go to localhost:5555
+* create a blob storage vercel > blob > create store > nextjs-job-board-files
+* copy .env.local into local .env file
+* now we are ready to start writing code
