@@ -1,4 +1,5 @@
-import JobListItem from "@/components/ui/JobListItem";
+import JobFilterSidebar from "@/components/JobFilterSidebar";
+import JobListItem from "@/components/JobListItem";
 import prisma from "@/lib/prisma";
 
 export default async function Home() {
@@ -12,11 +13,12 @@ export default async function Home() {
       <div className="space-y-5 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
           Developer Jobs
-        </h1>
+        </h1> 
         <p className="text-muted-foreground">Find yout dream job.</p>
       </div>
-      <section>
-        <div className="space-y-4">
+      <section className="flex flex-col gap-4 md:flex-row">
+        <JobFilterSidebar />
+        <div className="flex-grow space-y-4">
           {jobs.map((job) => (
             <JobListItem job={job} key={job.id} />
           ))}

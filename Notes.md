@@ -109,7 +109,7 @@ warn(prisma-client) There are already 10 instances of Prisma Client actively run
 * copy .env.local into local .env file
 * now we are ready to start writing code
 
-## Job list server component
+# Job list server component
 > npm run dev
 * page.tsx server compoenent so can be async and we can fetch data
 * src/components/jobKistItem.tsx
@@ -119,3 +119,15 @@ warn(prisma-client) There are already 10 instances of Prisma Client actively run
 * create components/Badge.tsx
 * by default headlines are unstyled by tailwind css
 * set min width in root layout to not shrink beyond a certain limit (for instance when using DevTools)
+
+# Job filter server component
+* forms can call server actions even inside server components (in server components we don't have javascript we can't execute onClick handler for example)
+* In form, use Label imported /ui/label previously from Shadcn, not the unstyled radix one
+* server action marked by "use server"
+* create ui/select.tsx (the proble of ShadCn one is that we cannot use Javascript in server component)
+* React.HTMLProps HTMLSelectElement to have the same props as native element (here Select with native select)
+* to hide the caret of select apperance-none
+* add a ref to the select component
+* trick [...].filter(Boolean) to filter null values
+* create lib/validation.ts for type validation
+ 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import companyLogoPlaceholder from "@/assets/company-logo-placeholder.png";
 import { Banknote, Briefcase, Clock, Globe2, Globe2Icon, MapPin } from "lucide-react";
 import { formatMoney, relativeDate } from "@/lib/utils";
-import Badge from "../Badge";
+import Badge from "./Badge";
 
 interface JobListItemProps {
   job: Job;
