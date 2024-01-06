@@ -108,3 +108,14 @@ warn(prisma-client) There are already 10 instances of Prisma Client actively run
 * create a blob storage vercel > blob > create store > nextjs-job-board-files
 * copy .env.local into local .env file
 * now we are ready to start writing code
+
+## Job list server component
+> npm run dev
+* page.tsx server compoenent so can be async and we can fetch data
+* src/components/jobKistItem.tsx
+* article more idiomatic than div for seo purposes
+* icons provided by luci react (came with Shadcn)
+* we need to format salary into dollars. Do it in utils.ts file
+* create components/Badge.tsx
+* by default headlines are unstyled by tailwind css
+* set min width in root layout to not shrink beyond a certain limit (for instance when using DevTools)
