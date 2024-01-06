@@ -81,3 +81,9 @@ make sure eslint and prettier don't interfere
 * react hook form allows us to use Shadcn components with react hook form which is a validation library
 > npx shadcn-ui@latest add form
 
+# Vercel Postgres, Vercel Blob, Prisma Setup
+> npx prisma init
+* creates schema.prisma file + .env file
+* add .env to .gitignore
+* vercel > storage. create postgres database name nextjs-job-board. Import content from .env.local into ;env file
+* 
