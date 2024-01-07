@@ -131,3 +131,16 @@ warn(prisma-client) There are already 10 instances of Prisma Client actively run
 * trick [...].filter(Boolean) to filter null values
 * create lib/validation.ts for type validation
  
+# Filter results from URL search params + useFormStatus
+* add an error page  src/app/error.tsx
+* refactor h1 element
+* In PageProps searchParams is a special name in NextJS you have to spell it in camelCase. There it will put whatever is in the query parameters. Params there are string because they are strings in the query. They are converted when page is loaded
+* we want to use postgres for full text search because it is a bit more powerful than a RAM query (described in Prisma doc) (see fullTextSearch feature enabled in prisma.schema file)
+```
+//for text that contains multiple words
+search: 'cat' & 'doc'
+```
+* useFormStatus React hook allows us to have a child component which will be run on the client that receives the form state of the parent. Extract Button into a separate client component FormSubmitButton. we can't use hooks inside server components
+* HTMLProps contains more stuff than HTMLAttributes. Stuff like ref etc.
+* Progressive enhancement is a design philosophy that provides a baseline of essential content and functionality to as many users as possible, while delivering the best possible experience only to users of the most modern browsers that can run all the required code.
+* 
