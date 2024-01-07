@@ -143,4 +143,13 @@ search: 'cat' & 'doc'
 * useFormStatus React hook allows us to have a child component which will be run on the client that receives the form state of the parent. Extract Button into a separate client component FormSubmitButton. we can't use hooks inside server components
 * HTMLProps contains more stuff than HTMLAttributes. Stuff like ref etc.
 * Progressive enhancement is a design philosophy that provides a baseline of essential content and functionality to as many users as possible, while delivering the best possible experience only to users of the most modern browsers that can run all the required code.
+
+# Navbar + footer + metadata
+* asChild prop a feature of Shadcn. %ake the element look as a button but the actual rendered element is another element (eg link instead ofr a button for accessibility reason)
+* create a title template
+* generateMetadata function to mke metaData dynamic
+* the only problem is that template does only work on chiuld pages not front page. so we have to add | Flow Jobs manually in generateMetadata
+* Metatitle is also great for SEO because this can shjow in Google as Contract developer jobs in Redmond, Washington, United States if someone is searching for this lind of job
+* when clicking on the logo, params are removed from the url but not from the form, because React automatically maintains the state of the component. We know that our filter has changed if uour default values have changed
+* 1 Solution: add a key prop to the form component that contains JSON stringified defaultValues because that's the easiest way to compare old state with new state. If the states are different the component will be rendered from scratch
 * 
