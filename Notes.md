@@ -152,4 +152,61 @@ search: 'cat' & 'doc'
 * Metatitle is also great for SEO because this can shjow in Google as Contract developer jobs in Redmond, Washington, United States if someone is searching for this lind of job
 * when clicking on the logo, params are removed from the url but not from the form, because React automatically maintains the state of the component. We know that our filter has changed if uour default values have changed
 * 1 Solution: add a key prop to the form component that contains JSON stringified defaultValues because that's the easiest way to compare old state with new state. If the states are different the component will be rendered from scratch
-* 
+
+# React Hook Form + Zod Validation
+* validation schema for creating a new job
+* use zod. The validation schema can be used in the front end and the backend
+* app/jobs/new/page.tsx
+* new client component NewJobForm
+* we separate page and NewJobForm component because we can only export metadata from a server component
+* Import Shadcn local form not react hooks one. We use that special Form insted of html native form because now we want to integrate react hook forms:
+  + Store the value for us
+  + gives us a way to access the different form fields for validation
+  + FormFieldComponent use this to render a single form input or a select field or a checkbox or whatever. Control Manages the state and passes it to react hook form. FormItem provides some layout and styling. FormLabel, FormInput field and the description and the error message are aligned properly with the correct spacing. FormControl makes sure that messafe and label and description are connected properly (internally uses context t pass these valuesto the different components and context is only available in cliebt components) eg label htmlFor accessibility atytribute automatically managed for us
+* One can use react-hook-forms without Shadcn field wrapper but Shadcn is nicely styled + reusability
+* embed a native form inside Form but with noValidate property as to disable native browser validation
+* This time use the onSubmit function
+* if we define onSubmit we ue it as follows onSubmit={handleSubmit(onSubmit)} handleSubmit is responsible for triggering our formValidation through react hook form and this also extracts the data and passes it into our onSubmit function
+* FormMessage will automatically contain the error message from our validation schema if value is not valid
+* forms are complicate because we need accessibility, xwe need to manage form states and libraries like react hook forms do that for you
+* Change Form Shadcn component to prevent the label text from shifting to red in case of validation error
+* Not allowed to set value on input file type for security reasons. see companyLogo input.
+* such a file input uses a type called file list which can contain multiple files even if we did select one and then we can extract our file from this file list. Use onChange trick
+* new component LocationInput
+* type search on input so we get the x to clear the input
+* onBlur oppositiuve to onFocus.
+```
+blur vs focusout =>
+
+The focusout event is sent to an element when it, or any element inside of it, loses focus. This is distinct from the blur event in that it supports detecting the loss of focus on descendant elements (in other words, it supports event bubbling).
+```
+* on the buttn use onMouseDown rather than onClick, because before the click is received we lose focus an the onClick won't work. onMouse Down is triggered earlier before we lose focus.
+* use watch from react hook to display the selected city
+* In the following piece of code set shouldValidate to true so that if we delete the location but we have onSite selected then this will trigger the error message that says we need a location for onsite jobs:
+```
+onClick={() => {
+                        setValue("location", "", { shouldValidate: true })
+                      }}
+```
+* rich text editor wysiwyg
+* component RichTextEditor
+* we have to add the css to the RichTextEditor in order for it to display correctly import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+```
+FROM Bing Chat
+:focus-visible pseudo-class matches an element that is currently focused, but only if the focus was obtained via keyboard navigation 
+. This distinction is important because it allows developers to provide different styles for focus indicators based on the user’s input modality 
+For example, if you want to provide a different focus indicator for keyboard users, you can use the :focus-visible pseudo-class to style the element differently than the default :focus style 
+
+:focus matches any element that has focus, while :focus-within matches the parent of the element that has focus. This distinction is important because it allows developers to provide different styles for focus indicators based on the user’s input modality 123.
+
+For example, if you want to provide a different focus indicator for the parent element when one of its children is focused, you can use the :focus-within pseudo-class to style the parent element differently than the default :focus style
+```
+* Error because it tries to render editor on server side. THus use a dynamic import
+```
+ ⨯ node_modules\react-draft-wysiwyg\dist\react-draft-wysiwyg.js (1:392) @ window        
+ ⨯ ReferenceError: window is not defined
+```
+* we need to save the draft as markdown in the database. Thus we installed markdown-draft-js
+* again the ref is necessary so that our react hook form can automatically focus our input field. See he setFocus call when clicking on the label (Editor has no id prop so the connection is not automatic)
+* sublit button. We don't want to use form submit button, we don't handle this via useFormStatus, instead react hook form has its own loading state
+* First extract jsx from FormSUbmitButton inside a new component LoadingButton
