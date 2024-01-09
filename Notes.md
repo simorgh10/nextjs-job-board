@@ -225,4 +225,35 @@ For example, if you want to provide a different focus indicator for the parent e
 * configure nextjs config to authorize vercel blob urls in order to b able to display company logos
 
 # Job details page (React markdown, generateStaticParams, generateMetadata, React cache)
-* 
+* In job/[slug] generateMetadata, you cannot share data directly between this page and generate metadata function. You have to fetch this data in both places.
+* That's why getJob calls a cache function, so that we mahe only one call to this page.
+* With fetch does deduplication automatically. but for other ways of fetching like using an ORM or usng Axios for example, calls are not automatically deduplicated.
+* In component  Markdown pass children prop as a stringt not a ReactNode. Here the prop children type overrides original type
+* list-inside/outside https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position
+* not-found page not-found.tsx
+* when npm run build the circle means statically cached that is good and fast
+* to force statically caching of job details pages (containing slug), you can add generateStaticParams. see [slug]/page.tsx. ndlr We say it is rendered as static html
+> npm run build
+```
+Route (app)                              Size     First Load JS
+┌ λ /                                    3.23 kB         103 kB
+├ ○ /_not-found                          0 B                0 B
+├ ○ /job-submitted                       140 B          82.2 kB
+├ ● /jobs/[slug]                         186 B          93.3 kB
+└ ○ /jobs/new                            320 kB          409 kB
++ First Load JS shared by all            82.1 kB
+  ├ chunks/938-7938199a24d69ce3.js       26.7 kB
+  ├ chunks/fd9d1056-32992e129a583953.js  53.3 kB
+  ├ chunks/main-app-3d6f1c3b5644e441.js  220 B
+  └ chunks/webpack-248a844b623bbe21.js   1.88 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+λ  (Dynamic)  server-rendered on demand using Node.js
+```
+* now with npm start (production run), the slug page opens instantly, because nextJS also prefetches links and together with statically cached page there's virtually zero loading time
+* with generateStatic params nextjs renders all the jobs data at compile time and not when we open the page.
+* fast rendertimes are very good for SEO
+* side effect is that if there is a new page with a new slug that we dind't cache yet which happen after we added a new job via our form and approved it, every new slug will be rendered the first time a user opens it and and then it will be cached for all our successive users
+* since server component, makdown also rendered by the server. The benefit of server components because we have smaller Javascript bundle size 

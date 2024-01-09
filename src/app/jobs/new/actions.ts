@@ -23,7 +23,7 @@ export async function createJobPosting(formData: FormData) {
     salary,
   } = createJobSchema.parse(values);
 
-  const slug = `${toSlug(title)}-${nanoid(10)}}`;
+  const slug = `${toSlug(title)}-${nanoid(10)}`;
 
   let companyLogoUrl: string | undefined = undefined;
 
