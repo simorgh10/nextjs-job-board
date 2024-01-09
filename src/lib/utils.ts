@@ -16,3 +16,14 @@ export function formatMoney(amount: number) {
 export function relativeDate(from: Date) {
   return formatDistanceToNowStrict(from, { addSuffix: true });
 }
+
+export function toSlug(str: string) {
+  return (
+    str
+      .toLowerCase()
+      // replace multiple spaces with one dash
+      .replace(/[\s]+/g, "-")
+      // remove non alphanumeric non dash characters
+      .replace(/[^\w-]+/g, "")
+  );
+}

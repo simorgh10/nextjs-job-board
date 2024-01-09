@@ -210,3 +210,19 @@ For example, if you want to provide a different focus indicator for the parent e
 * again the ref is necessary so that our react hook form can automatically focus our input field. See he setFocus call when clicking on the label (Editor has no id prop so the connection is not automatic)
 * sublit button. We don't want to use form submit button, we don't handle this via useFormStatus, instead react hook form has its own loading state
 * First extract jsx from FormSUbmitButton inside a new component LoadingButton
+
+# File upload - Server action in client component
+* we can't declare a server action inside a client component
+* jobs/new/actions.ts that's the convention
+* In createJobPosting, we still use FormData as Paramater because we have a image and we only can send an image within a form data
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+* use nanoid in the slug
+* Important to note that you can only send files up to 4.5 megabytes into a a server action. it is possible to upload larger files from the frontent. see https://vercel.com/guides/how-to-bypass-vercel-body-size-limit-serverless-functions
+* In the onSUbmit we have to first tranform to formData
+* Whatever message we put in throw Error in server action, it will not be received by frontend because that way we can accientally leak sensitive data.
+* new job-submitted folder
+* for now approve to true by default
+* configure nextjs config to authorize vercel blob urls in order to b able to display company logos
+
+# Job details page (React markdown, generateStaticParams, generateMetadata, React cache)
+* 
