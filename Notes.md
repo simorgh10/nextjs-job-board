@@ -257,3 +257,14 @@ Route (app)                              Size     First Load JS
 * fast rendertimes are very good for SEO
 * side effect is that if there is a new page with a new slug that we dind't cache yet which happen after we added a new job via our form and approved it, every new slug will be rendered the first time a user opens it and and then it will be cached for all our successive users
 * since server component, makdown also rendered by the server. The benefit of server components because we have smaller Javascript bundle size 
+
+# Clerk Authentication (Admin dashboard) + middleware.ts
+* Sign-in then new application
+* follow setup guide for nextJS
+* wrap the pages that we want to protect in a clock provider
+* new folder admin/layout.tsx to create a layout that is active only for admin pages
+* middleware.ts to take care that clerk checks for authentication before we open our admin page. DIRECTLY IN THE SRC FOLDER
+* localhost:3000/admin redirects to clerk authentication
+* customize clerk login page
+* personalize login page
+* 
