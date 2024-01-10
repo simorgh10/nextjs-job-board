@@ -285,3 +285,9 @@ Route (app)                              Size     First Load JS
 * We could also have used normal useState then execute our server action via onCLick handler that reads returned error and put it into state
 * the benefit of useFormState is to allow progressive enhancement
 * componenty AdminNavbar
+
+# Pagination (Prisma & Postgresql)
+* the page will become another url param firts for shreability and because then it will work without state and without javascript
+* prisma has a special function that we can call to get total number of available pages
+* with invisible class the component is still there even if hidden (visibility: hidden) as opposed to display none
+* 
