@@ -267,4 +267,21 @@ Route (app)                              Size     First Load JS
 * localhost:3000/admin redirects to clerk authentication
 * customize clerk login page
 * personalize login page
-* 
+
+# Approve/delete jobs - UseFormState
+* admin/actions.tsx
+* clerk has a currentUser method
+* In user > ... > public metadata edit > 
+```
+{"role": "admin"}
+```
+* Revalidation is the process of purging the Data Cache and re-fetching the latest data. https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#revalidating-data
+* del function to remove a file from vercel blob
+* redirect has to be put outside try catch because internally redirect throws an error. This is hiow NextJs handle redirect
+* admin/jobs/[slug]/page.tsx
+* no care about caching or SEO on this page because only admins see this page
+* now this toime we want to get the error from the server
+* useFormState (not useFormStatus as used earlier). Thus AdminSIdebat has to be turned into client component because we cxan't call hooks outside server components
+* We could also have used normal useState then execute our server action via onCLick handler that reads returned error and put it into state
+* the benefit of useFormState is to allow progressive enhancement
+* componenty AdminNavbar
