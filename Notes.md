@@ -290,4 +290,8 @@ Route (app)                              Size     First Load JS
 * the page will become another url param firts for shreability and because then it will work without state and without javascript
 * prisma has a special function that we can call to get total number of available pages
 * with invisible class the component is still there even if hidden (visibility: hidden) as opposed to display none
+
+# Deployment (Vercel)
+* when deployng projects with prisma, we have tyo add poistinstall script within the scripts section of package.json.
+* to deploy project to Vercel have to push it to github
 * 
